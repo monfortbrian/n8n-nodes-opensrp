@@ -1,5 +1,5 @@
 import type { IExecuteFunctions, IHttpRequestOptions, JsonObject } from 'n8n-workflow';
-import { NodeApiError, NodeOperationError } from 'n8n-workflow';
+import { NodeApiError } from 'n8n-workflow';
 import type { IFhirBundle, IFhirResource, IOpenSrpCredentials, ITokenCache } from './types';
 
 const tokenCache: Map<string, ITokenCache> = new Map();
@@ -19,7 +19,7 @@ async function getOAuth2Token(
 		client_secret: credentials.clientSecret ?? '',
 	});
 
-	const response = await fetch(credentials.tokenEndpoint ?? '', {
+	const response = await fetch(credentials.tokenUrl ?? '', {
 		method: 'POST',
 		headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
 		body: body.toString(),
@@ -81,9 +81,6 @@ export async function openSrpRequest(
 	try {
 		return await context.helpers.httpRequest(options) as IFhirResource | IFhirBundle;
 	} catch (error) {
-		if (error instanceof NodeApiError || error instanceof NodeOperationError) {
-			throw error;
-		}
 		throw new NodeApiError(context.getNode(), error as JsonObject);
 	}
 }

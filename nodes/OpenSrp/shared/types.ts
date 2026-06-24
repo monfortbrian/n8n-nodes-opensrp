@@ -3,7 +3,7 @@ import type { IDataObject } from 'n8n-workflow';
 export interface IOpenSrpCredentials {
 	authType: 'oauth2' | 'bearer';
 	baseUrl: string;
-	tokenEndpoint?: string;
+	tokenUrl?: string;
 	clientId?: string;
 	clientSecret?: string;
 	bearerToken?: string;

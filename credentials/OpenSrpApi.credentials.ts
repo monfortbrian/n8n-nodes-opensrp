@@ -3,7 +3,14 @@ import type { ICredentialType, INodeProperties } from 'n8n-workflow';
 export class OpenSrpApi implements ICredentialType {
 	name = 'openSrpApi';
 	displayName = 'OpenSRP API';
-	documentationUrl = 'https://opensrp.io/';
+	icon = 'file:opensrp.svg' as const;
+	documentationUrl = 'https://smartregister.org';
+	test = {
+		request: {
+			baseURL: '={{$credentials.baseUrl}}',
+			url: '/metadata',
+		},
+	};
 	properties: INodeProperties[] = [
 		{
 			displayName: 'Authentication',
@@ -24,14 +31,13 @@ export class OpenSrpApi implements ICredentialType {
 			description: 'Your OpenSRP FHIR server base URL no trailing slash',
 			required: true,
 		},
-		// OAuth2 fields
 		{
-			displayName: 'Token Endpoint',
-			name: 'tokenEndpoint',
+			displayName: 'Keycloak Token URL',
+			name: 'tokenUrl',
 			type: 'string',
 			default: '',
 			placeholder: 'https://keycloak.example.org/auth/realms/opensrp/protocol/openid-connect/token',
-			description: 'Keycloak token URL for OAuth2 Client Credentials flow',
+			description: 'Full Keycloak token URL for OAuth2 Client Credentials flow',
 			displayOptions: { show: { authType: ['oauth2'] } },
 		},
 		{
@@ -49,7 +55,6 @@ export class OpenSrpApi implements ICredentialType {
 			default: '',
 			displayOptions: { show: { authType: ['oauth2'] } },
 		},
-		// Bearer fallback
 		{
 			displayName: 'Bearer Token',
 			name: 'bearerToken',
