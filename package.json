@@ -1,6 +1,6 @@
 {
   "name": "n8n-nodes-opensrp",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "n8n community node for OpenSRP; FHIR R4 field task assignment, catchment management, frontliner tracking, and community health workflow automation.",
   "keywords": [
     "n8n-community-node-package",
