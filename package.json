@@ -1,0 +1,68 @@
+{
+  "name": "n8n-nodes-opensrp",
+  "version": "0.1.0",
+  "description": "n8n community node for OpenSRP; FHIR R4 field task assignment, catchment management, frontliner tracking, and community health workflow automation.",
+  "keywords": [
+    "n8n-community-node-package",
+    "n8n",
+    "n8n-node",
+    "opensrp",
+    "fhir",
+    "community-health",
+    "chw",
+    "field-operations",
+    "wash",
+    "epidemic-control",
+    "agritech",
+    "humanitarian",
+    "health-informatics",
+    "interoperability",
+    "hl7-fhir",
+    "digital-public-good"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/monfortbrian/n8n-nodes-opensrp#readme",
+  "author": {
+    "name": "Monfort Brian N.",
+    "email": "monfortnkurunziza0@gmail.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/monfortbrian/n8n-nodes-opensrp.git"
+  },
+  "bugs": {
+    "url": "https://github.com/monfortbrian/n8n-nodes-opensrp/issues"
+  },
+  "scripts": {
+    "build": "n8n-node build",
+    "dev": "n8n-node dev",
+    "lint": "n8n-node lint",
+    "lint:fix": "n8n-node lint --fix",
+    "release": "n8n-node release",
+    "prepublishOnly": "n8n-node prerelease"
+  },
+  "files": [
+    "dist"
+  ],
+  "n8n": {
+    "n8nNodesApiVersion": 1,
+    "strict": true,
+    "credentials": [
+      "dist/credentials/OpenSrpApi.credentials.js"
+    ],
+    "nodes": [
+      "dist/nodes/OpenSrp/OpenSrp.node.js"
+    ]
+  },
+  "devDependencies": {
+    "@n8n/node-cli": "*",
+    "eslint": "9.29.0",
+    "n8n-workflow": "*",
+    "prettier": "3.8.3",
+    "release-it": "20.2.0",
+    "typescript": "5.9.3"
+  },
+  "peerDependencies": {
+    "n8n-workflow": "*"
+  }
+}
