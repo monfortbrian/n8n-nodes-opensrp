@@ -1,16 +1,15 @@
-import type { ICredentialType, INodeProperties } from 'n8n-workflow';
+import type {
+	IAuthenticateGeneric,
+	ICredentialTestRequest,
+	ICredentialType,
+	INodeProperties,
+} from 'n8n-workflow';
 
 export class OpenSrpApi implements ICredentialType {
 	name = 'openSrpApi';
 	displayName = 'OpenSRP API';
 	icon = 'file:opensrp.svg' as const;
 	documentationUrl = 'https://smartregister.org';
-	test = {
-		request: {
-			baseURL: '={{$credentials.baseUrl}}',
-			url: '/metadata',
-		},
-	};
 	properties: INodeProperties[] = [
 		{
 			displayName: 'Authentication',
@@ -65,4 +64,19 @@ export class OpenSrpApi implements ICredentialType {
 			displayOptions: { show: { authType: ['bearer'] } },
 		},
 	];
+	authenticate: IAuthenticateGeneric = {
+		type: 'generic',
+		properties: {
+			headers: {
+				Authorization: '=Bearer {{$credentials?.bearerToken}}',
+			},
+		},
+	};
+	test: ICredentialTestRequest = {
+		request: {
+			baseURL: '={{$credentials?.baseUrl}}',
+			url: '/metadata',
+			method: 'GET',
+		},
+	};
 }
